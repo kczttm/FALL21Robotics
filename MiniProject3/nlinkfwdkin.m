@@ -27,7 +27,7 @@ pCurr = robotsym.P(:,1);
 pCum2 = pCum2 + pCurr;
 for i = 1:n
     cross = crossmat(h(:,i));
-    jCum(:,i) = cross*(pCum-pCum2); %  had
+    jCum(:,i) = cross*(pCum-pCum2); %  had to do this otherwise syms won't work
     % note that R0i*piT= p0T - p0i
     rCurr = rot(h(:,i),q(i));
     rCum2 = rCum2*rCurr; 
@@ -35,6 +35,6 @@ for i = 1:n
     pCum2 = pCum2 + pCurr;
 end
 %% Assign back to the robot object
-robotsym.T(1:3,1:4) = [rCum,pCum]; %  Transformation Matrix
+robotsym.T = [rCum,pCum; zeros(1,3),1]; %  Transformation Matrix
 robotsym.J = [ones(1,n);jCum]; %  Jacobian Matrix 4xn first row all ones
 end
