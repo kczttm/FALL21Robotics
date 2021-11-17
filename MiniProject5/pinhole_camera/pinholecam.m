@@ -22,6 +22,7 @@ cam.f=f;
 cam.rho=rho;
 cam.uv0=uv0;
 cam.K=[f/rho(1) 0 uv0(1);0 f/rho(2) uv0(2);0 0 1];
+cam.ns=.1;
 
 end
 
